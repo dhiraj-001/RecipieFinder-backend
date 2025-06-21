@@ -53,12 +53,15 @@ export const getFavourites = async(req,res) =>{
   try {
     const {userId} = req.params;
 
-    await db.select().from(favoritesTable).where(
+    const userFav = await db
+    .select()
+    .from(favoritesTable)
+    .where(
       eq(favoritesTable.userId,userId)
     )
 
     res.status(200).json({
-      success: "Favourites recipies fetched successfully"
+     userFav
     })
   } catch (error) {
     console.log(error, "Error fetching favouroites")
