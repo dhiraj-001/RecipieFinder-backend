@@ -4,7 +4,7 @@ import { favoritesTable } from "../db/schema.js";
 
 export const addFavourite = async (req, res) => {
   try {
-    const { userId, recipeId, title, image, cookTime, servings } = req.body;
+    const { userId, recipeId, title, image} = req.body;
 
     if (!userId || !recipeId || !title) {
       return res.status(200).json({
@@ -17,8 +17,6 @@ export const addFavourite = async (req, res) => {
       recipeId,
       title,
       image,
-      cookTime,
-      servings,
     }).returning()
 
     res.status(200).json(newFavourite[0])
@@ -70,3 +68,5 @@ export const getFavourites = async(req,res) =>{
     })
   }
 }
+
+
